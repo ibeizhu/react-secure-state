@@ -36,9 +36,9 @@ export interface StoreType {
   height: number;
 }
 
-const { StoreProvider, useStoreData } = createStore<StoreType>();
+const { StoreProvider, useStoreValues } = createStore<StoreType>();
 
-export { StoreProvider, useStoreData };
+export { StoreProvider, useStoreValues };
 ```
 
 ### 初始化store
@@ -68,19 +68,19 @@ function App() {
 `./Child.tsx`
 
 ```tsx | pure
-import { useStoreData } from './store';
+import { useStoreValues } from './store';
 
 export function Child1() {
   // 申请字段 `name` 的读写权限
-  // 注意: `updateData` 只能更新字段 `name`，没有权限更新其他字段
-  const [data, updateData] = useStoreData(['name']);
+  // 注意: `setFieldValue` 只能更新字段 `name`，没有权限更新其他字段
+  const { values, setFieldValue } = useStoreValues(['name']);
 
   console.log(data);
   // data = { name }
 
   const handleClick = () => {
     // 没有权限更新其他字段
-    updateData('name', 'James');
+    setFieldValue('name', 'James');
   };
 
   return (
@@ -93,15 +93,15 @@ export function Child1() {
 
 export function Child2() {
   // 申请字段 `height` 的读写权限
-  // 注意: `updateData` 只能更新字段 `height`，没有权限更新其他字段
-  const [data, updateData] = useStoreData(['height']);
+  // 注意: `setFieldValue` 只能更新字段 `height`，没有权限更新其他字段
+  const { values, setFieldValue } = useStoreValues(['height']);
 
   console.log(data);
   // data = { height }
 
   const handleClick = () => {
     // 没有权限更新其他字段
-    updateData('height', 110);
+    setFieldValue('height', 110);
   };
 
   return (

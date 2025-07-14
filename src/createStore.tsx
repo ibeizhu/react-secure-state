@@ -18,7 +18,7 @@ import {
 type FieldPath<T> = keyof T & string;
 
 export interface StoreContextProps<T> {
-  values: T;
+  store: T;
   updateField: (key: FieldPath<T>, value: any) => void;
   updateFields: (data: Partial<Record<FieldPath<T>, any>>) => void;
 }
@@ -29,7 +29,12 @@ export interface StoreProviderProps<T> {
 }
 
 export function createStore<T extends Record<string, any>>() {
-  const subject = createSubscribe();
+  type SubscribeValues = {
+    store: T;
+    fields: FieldPath<T>[];
+  };
+
+  const subject = createSubscribe<SubscribeValues>();
 
   const StoreContext = createContext<StoreContextProps<T> | undefined>(
     undefined,
@@ -47,21 +52,27 @@ export function createStore<T extends Record<string, any>>() {
     });
 
     const updateField = useMemoizedFn((key: FieldPath<T>, value: any) => {
-      setValue(self.current.store, key, value);
-      subject.notify(self.current.store);
+      setValue(self.current.store, key, deepClone(value));
+      subject.notify({
+        store: self.current.store,
+        fields: [key],
+      });
     });
 
     const updateFields = useMemoizedFn(
       (data: Partial<Record<FieldPath<T>, any>>) => {
         Object.keys(data).forEach((key) => {
-          setValue(self.current.store, key, getValue(data, key));
+          setValue(self.current.store, key, deepClone(getValue(data, key)));
         });
-        subject.notify(self.current.store);
+        subject.notify({
+          store: self.current.store,
+          fields: Object.keys(data),
+        });
       },
     );
 
     const contextValue = useMemo<StoreContextProps<T>>(() => {
-      return { values: self.current.store, updateField, updateFields };
+      return { store: self.current.store, updateField, updateFields };
     }, []);
 
     return (
@@ -71,32 +82,58 @@ export function createStore<T extends Record<string, any>>() {
     );
   }
 
-  function useStoreData<K extends FieldPath<T>>(fields: K[]) {
-    const { values = {}, updateField } = useStoreContext();
+  function useStoreValues<K extends FieldPath<T>>(fields: K[]) {
+    const { store = {}, updateField, updateFields } = useStoreContext();
 
-    const [data, setData] = useState<Pick<T, K>>(() => {
-      return extractFields(values, fields) as Pick<T, K>;
+    const [values, setValues] = useState<Pick<T, K>>(() => {
+      return extractFields(store, fields) as Pick<T, K>;
     });
 
-    const updateData = useMemoizedFn((path: K, value: any) => {
+    const setFieldValue = useMemoizedFn((path: K, value: any) => {
       if (!fields.includes(path)) {
         throw new Error(`No update permission for field: ${path}`);
       }
       updateField(path, value);
     });
 
+    const setFieldsValue = useMemoizedFn(
+      (fieldsValue: Partial<Record<FieldPath<T>, any>>) => {
+        Object.keys(fieldsValue).forEach((path) => {
+          if (!fields.includes(path as K)) {
+            throw new Error(`No update permission for field: ${path}`);
+          }
+        });
+        updateFields(fieldsValue);
+      },
+    );
+
     useEffect(() => {
-      subject.subscribe((storeValues: T) => {
-        const newData = extractFields(storeValues, fields) as Pick<T, K>;
-        setData(newData);
+      subject.subscribe((params) => {
+        let needUpdate = false;
+
+        for (let field of params.fields) {
+          if (fields.includes(field as K)) {
+            needUpdate = true;
+            break;
+          }
+        }
+
+        if (needUpdate) {
+          const newValues = extractFields(params.store, fields) as Pick<T, K>;
+          setValues(newValues);
+        }
       });
     }, []);
 
-    return { data, updateData };
+    return {
+      values,
+      setFieldValue,
+      setFieldsValue,
+    };
   }
 
   return {
     StoreProvider,
-    useStoreData,
+    useStoreValues,
   };
 }

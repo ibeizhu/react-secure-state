@@ -14,9 +14,9 @@ export interface StoreType {
   height: number;
 }
 
-const { StoreProvider, useStoreData } = createStore<StoreType>();
+const { StoreProvider, useStoreValues } = createStore<StoreType>();
 
-export { StoreProvider, useStoreData };
+export { StoreProvider, useStoreValues };
 ```
 
 ## initialize store
@@ -46,19 +46,19 @@ function App() {
 `./Child.tsx`
 
 ```tsx | pure
-import { useStoreData } from './store';
+import { useStoreValues } from './store';
 
 export function Child1() {
   // apply field `name` read & write permission
-  // note: `updateData` can only update field `name`, has no permission to update other fields
-  const [data, updateData] = useStoreData(['name']);
+  // note: `setFieldValue` can only update field `name`, has no permission to update other fields
+  const { values, setFieldValue } = useStoreValues(['name']);
 
   console.log(data);
   // data = { name }
 
   const handleClick = () => {
     // has no permission to update other fields
-    updateData('name', 'James');
+    setFieldValue('name', 'James');
   };
 
   return (
@@ -71,15 +71,15 @@ export function Child1() {
 
 export function Child2() {
   // apply field `height` read & write permission
-  // note: `updateData` can only update field `height`, has no permission to update other fields
-  const [data, updateData] = useStoreData(['height']);
+  // note: `setFieldValue` can only update field `height`, has no permission to update other fields
+  const { values, setFieldValue } = useStoreValues(['height']);
 
   console.log(data);
   // data = { height }
 
   const handleClick = () => {
     // has no permission to update other fields
-    updateData('height', 110);
+    setFieldValue('height', 110);
   };
 
   return (

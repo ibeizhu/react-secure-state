@@ -1,6 +1,6 @@
 {
   "name": "react-secure-state",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A secure react state management library",
   "main": "lib/index.js",
   "module": "esm/index.js",
