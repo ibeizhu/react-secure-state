@@ -1,6 +1,19 @@
-import React, { createContext, useContext, useMemo, useState } from 'react';
-import { useExtractFields, useMemoizedFn } from './hooks';
-import { getValue, setValue } from './utils';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+import { useMemoizedFn } from './hooks';
+import {
+  createSubscribe,
+  deepClone,
+  extractFields,
+  getValue,
+  setValue,
+} from './utils';
 
 type FieldPath<T> = keyof T & string;
 
@@ -16,6 +29,8 @@ export interface StoreProviderProps<T> {
 }
 
 export function createStore<T extends Record<string, any>>() {
+  const subject = createSubscribe();
+
   const StoreContext = createContext<StoreContextProps<T> | undefined>(
     undefined,
   );
@@ -27,25 +42,27 @@ export function createStore<T extends Record<string, any>>() {
   }
 
   function StoreProvider({ children, initialValue }: StoreProviderProps<T>) {
-    const [values, setValues] = useState<T>(initialValue);
+    const self = useRef<{ store: T }>({
+      store: deepClone(initialValue),
+    });
 
     const updateField = useMemoizedFn((key: FieldPath<T>, value: any) => {
-      setValue(values, key, value);
-      setValues({ ...values });
+      setValue(self.current.store, key, value);
+      subject.notify(self.current.store);
     });
 
     const updateFields = useMemoizedFn(
       (data: Partial<Record<FieldPath<T>, any>>) => {
         Object.keys(data).forEach((key) => {
-          setValue(values, key, getValue(data, key));
+          setValue(self.current.store, key, getValue(data, key));
         });
-        setValues({ ...values });
+        subject.notify(self.current.store);
       },
     );
 
     const contextValue = useMemo<StoreContextProps<T>>(() => {
-      return { values, updateField, updateFields };
-    }, [values, updateField, updateFields]);
+      return { values: self.current.store, updateField, updateFields };
+    }, []);
 
     return (
       <StoreContext.Provider value={contextValue}>
@@ -57,10 +74,9 @@ export function createStore<T extends Record<string, any>>() {
   function useStoreData<K extends FieldPath<T>>(fields: K[]) {
     const { values = {}, updateField } = useStoreContext();
 
-    const data = useExtractFields({
-      data: values,
-      fields,
-    }) as Pick<T, K>;
+    const [data, setData] = useState<Pick<T, K>>(() => {
+      return extractFields(values, fields) as Pick<T, K>;
+    });
 
     const updateData = useMemoizedFn((path: K, value: any) => {
       if (!fields.includes(path)) {
@@ -69,7 +85,14 @@ export function createStore<T extends Record<string, any>>() {
       updateField(path, value);
     });
 
-    return [data, updateData];
+    useEffect(() => {
+      subject.subscribe((storeValues: T) => {
+        const newData = extractFields(storeValues, fields) as Pick<T, K>;
+        setData(newData);
+      });
+    }, []);
+
+    return { data, updateData };
   }
 
   return {
