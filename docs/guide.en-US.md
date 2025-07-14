@@ -64,9 +64,7 @@ export function Child1() {
   return (
     <div>
       {data.name}
-      <input type="button" onClick={handleClick}>
-        update name
-      </input>
+      <button onClick={handleClick}>update name</button>
     </div>
   );
 }
@@ -87,9 +85,7 @@ export function Child2() {
   return (
     <div>
       {data.height}
-      <input type="button" onClick={handleClick}>
-        update height
-      </input>
+      <button onClick={handleClick}>update height</button>
     </div>
   );
 }
