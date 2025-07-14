@@ -9,4 +9,6 @@ export default defineConfig({
   themeConfig: {
     name: 'Secure State',
   },
+  base: '/react-secure-state/',
+  publicPath: '/react-secure-state/',
 });

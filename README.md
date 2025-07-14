@@ -9,7 +9,9 @@ Features:
 - 📝 Typed: Powerful Type Inference
 -  🚀 Lightweight: Zero Dependencies
 
-[中文文档](https://github.com/ibeizhu/react-secure-state/blob/main/README.zh-CN.md)
+[中文文档](https://ibeizhu.github.io/react-secure-state)
+
+[English Document](https://ibeizhu.github.io/react-secure-state/en-US)
 
 ## Installation
 

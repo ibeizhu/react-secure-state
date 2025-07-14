@@ -9,6 +9,10 @@
 - 📝 类型提示: 强大的类型提示
 -  🚀 轻量级: 零外部依赖
 
+[中文文档](https://ibeizhu.github.io/react-secure-state)
+
+[English Document](https://ibeizhu.github.io/react-secure-state/en-US)
+
 ## Installation
 
 ```
