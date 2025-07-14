@@ -1,4 +1,4 @@
-"use strict";(self.webpackChunkreact_secure_state=self.webpackChunkreact_secure_state||[]).push([[430],{23129:function(o,n,e){e.r(n),e.d(n,{demos:function(){return a}});var t=e(67294),a={}},82908:function(o,n,e){e.r(n),e.d(n,{demos:function(){return a}});var t=e(67294),a={}},854:function(o,n,e){e.r(n),e.d(n,{texts:function(){return t}});const t=[{value:"react-secure-state",paraId:0,tocIndex:0},{value:" is designed to strictly control store data read and write permissions. Developers can explicitly declare and request read or write access to specific fields. If a field is not included in the declared permissions, modifications will not be permitted.",paraId:0,tocIndex:0},{value:"./store.tsx",paraId:1,tocIndex:1},{value:`import { createStore } from 'react-secure-state';
+"use strict";(self.webpackChunkreact_secure_state=self.webpackChunkreact_secure_state||[]).push([[430],{23129:function(a,n,e){e.r(n),e.d(n,{demos:function(){return o}});var t=e(67294),o={}},82908:function(a,n,e){e.r(n),e.d(n,{demos:function(){return o}});var t=e(67294),o={}},854:function(a,n,e){e.r(n),e.d(n,{texts:function(){return t}});const t=[{value:"react-secure-state",paraId:0,tocIndex:0},{value:" is a secure and reliable state management tool with fine-grained permission control and ultimate rendering performance.",paraId:0,tocIndex:0},{value:"Features:",paraId:1,tocIndex:0},{value:"\u{1F48E} Store: State Management Framework",paraId:2,tocIndex:0},{value:"\u{1F6E1}\uFE0F Secure: Field-level Access Control",paraId:2,tocIndex:0},{value:"\u{1F680} Extreme Performance: Support point-to-point rendering for store data updates",paraId:2,tocIndex:0},{value:"\u{1F4DD} Typed: Powerful Type Inference",paraId:2,tocIndex:0},{value:"\u{1F680} Lightweight: Zero Dependencies",paraId:2,tocIndex:0},{value:"./store.tsx",paraId:3,tocIndex:1},{value:`import { createStore } from 'react-secure-state';
 
 export interface StoreType {
   name: string;
@@ -8,7 +8,7 @@ export interface StoreType {
 const { StoreProvider, useStoreValues } = createStore<StoreType>();
 
 export { StoreProvider, useStoreValues };
-`,paraId:2,tocIndex:1},{value:"./App.tsx",paraId:3,tocIndex:2},{value:`import { StoreProvider } from './store';
+`,paraId:4,tocIndex:1},{value:"./App.tsx",paraId:5,tocIndex:2},{value:`import { StoreProvider } from './store';
 import { Child1, Child2 } from './Child';
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
     </StoreProvider>
   );
 }
-`,paraId:4,tocIndex:2},{value:"./Child.tsx",paraId:5,tocIndex:3},{value:`import { useStoreValues } from './store';
+`,paraId:6,tocIndex:2},{value:"./Child.tsx",paraId:7,tocIndex:3},{value:`import { useStoreValues } from './store';
 
 export function Child1() {
   // apply field \`name\` read & write permission
@@ -66,4 +66,4 @@ export function Child2() {
     </div>
   );
 }
-`,paraId:6,tocIndex:3}]},93698:function(o,n,e){e.r(n),e.d(n,{texts:function(){return t}});const t=[]}}]);
+`,paraId:8,tocIndex:3}]},93698:function(a,n,e){e.r(n),e.d(n,{texts:function(){return t}});const t=[]}}]);
