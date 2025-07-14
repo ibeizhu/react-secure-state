@@ -1,6 +1,6 @@
 {
   "name": "react-secure-state",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A secure react state management library",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -20,7 +20,14 @@
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
     "prepublishOnly": "father doctor && npm run build"
   },
-  "authors": [],
+  "authors": [
+    "ibeizhu"
+  ],
+  "homepage": "https://ibeizhu.github.io/react-secure-state",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ibeizhu/react-secure-state"
+  },
   "license": "MIT",
   "files": [
     "esm",
