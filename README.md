@@ -3,9 +3,12 @@
 [![NPM version](https://img.shields.io/npm/v/react-secure-state.svg?style=flat)](https://npmjs.org/package/react-secure-state)
 [![NPM downloads](http://img.shields.io/npm/dm/react-secure-state.svg?style=flat)](https://npmjs.org/package/react-secure-state)
 
+A secure and reliable state management tool with fine-grained permission control and ultimate rendering performance.
+
 Features:
 -  💎 Store: State Management Framework
 - 🛡️ Secure: Field-level Access Control
+-  🚀 Extreme Performance: Support point-to-point rendering for store data updates
 - 📝 Typed: Powerful Type Inference
 -  🚀 Lightweight: Zero Dependencies
 

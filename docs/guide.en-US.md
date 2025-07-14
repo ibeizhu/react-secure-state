@@ -1,6 +1,13 @@
 # Documentation
 
-`react-secure-state` is designed to strictly control store data read and write permissions. Developers can explicitly declare and request read or write access to specific fields. If a field is not included in the declared permissions, modifications will not be permitted.
+`react-secure-state` is a secure and reliable state management tool with fine-grained permission control and ultimate rendering performance.
+
+Features:
+-  💎 Store: State Management Framework
+- 🛡️ Secure: Field-level Access Control
+-  🚀 Extreme Performance: Support point-to-point rendering for store data updates
+- 📝 Typed: Powerful Type Inference
+-  🚀 Lightweight: Zero Dependencies
 
 ## createStore
 

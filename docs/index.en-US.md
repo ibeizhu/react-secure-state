@@ -1,7 +1,7 @@
 ---
 hero:
   title: Secure State
-  description: react-secure-state is designed to strictly control store data read and write permissions. Developers can explicitly declare and request read or write access to specific fields. If a field is not included in the declared permissions, modifications will not be permitted.
+  description: A secure and reliable state management tool with fine-grained permission control and ultimate rendering performance.
   actions:
     - text: Guide
       link: /en-US/guide
@@ -14,10 +14,10 @@ features:
   - title: Secure
     emoji: 🛡️
     description: Field-level Access Control
+  - title: Extreme Performance
+    emoji: 🚀
+    description: Point-to-point Rendering
   - title: Typed
     emoji: 📝
     description: Powerful Type Inference
-  - title: Lightweight
-    emoji: 🚀
-    description: Zero Dependencies
 ---

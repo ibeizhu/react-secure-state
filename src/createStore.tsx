@@ -47,8 +47,12 @@ export function createStore<T extends Record<string, any>>() {
   }
 
   function StoreProvider({ children, initialValue }: StoreProviderProps<T>) {
+    const cloneValues = useMemo(() => {
+      return deepClone(initialValue || {});
+    }, []);
+
     const self = useRef<{ store: T }>({
-      store: deepClone(initialValue),
+      store: cloneValues,
     });
 
     const updateField = useMemoizedFn((key: FieldPath<T>, value: any) => {

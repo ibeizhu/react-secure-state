@@ -3,9 +3,12 @@
 [![NPM version](https://img.shields.io/npm/v/react-secure-state.svg?style=flat)](https://npmjs.org/package/react-secure-state)
 [![NPM downloads](http://img.shields.io/npm/dm/react-secure-state.svg?style=flat)](https://npmjs.org/package/react-secure-state)
 
+安全可靠的的状态管理工具，支持精细化权限控制，极致的渲染性能
+
 功能特性:
 -  💎 Store: Store 状态管理
 - 🛡️ 安全: 字段级别的权限控制
+- 🛡️ 极致的性能: 支持点到点的render性能
 - 📝 类型提示: 强大的类型提示
 -  🚀 轻量级: 零外部依赖
 
