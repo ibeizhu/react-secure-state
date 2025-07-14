@@ -1,4 +1,4 @@
-"use strict";(self.webpackChunkreact_secure_state=self.webpackChunkreact_secure_state||[]).push([[430],{23129:function(a,e,n){n.r(e),n.d(e,{demos:function(){return o}});var t=n(67294),o={}},82908:function(a,e,n){n.r(e),n.d(e,{demos:function(){return o}});var t=n(67294),o={}},854:function(a,e,n){n.r(e),n.d(e,{texts:function(){return t}});const t=[{value:"react-secure-state",paraId:0,tocIndex:0},{value:" is designed to strictly control store data read and write permissions. Developers can explicitly declare and request read or write access to specific fields. If a field is not included in the declared permissions, modifications will not be permitted.",paraId:0,tocIndex:0},{value:"./store.tsx",paraId:1,tocIndex:1},{value:`import { createStore } from 'react-secure-state';
+"use strict";(self.webpackChunkreact_secure_state=self.webpackChunkreact_secure_state||[]).push([[430],{23129:function(a,n,e){e.r(n),e.d(n,{demos:function(){return o}});var t=e(67294),o={}},82908:function(a,n,e){e.r(n),e.d(n,{demos:function(){return o}});var t=e(67294),o={}},854:function(a,n,e){e.r(n),e.d(n,{texts:function(){return t}});const t=[{value:"react-secure-state",paraId:0,tocIndex:0},{value:" is designed to strictly control store data read and write permissions. Developers can explicitly declare and request read or write access to specific fields. If a field is not included in the declared permissions, modifications will not be permitted.",paraId:0,tocIndex:0},{value:"./store.tsx",paraId:1,tocIndex:1},{value:`import { createStore } from 'react-secure-state';
 
 export interface StoreType {
   name: string;
@@ -41,9 +41,7 @@ export function Child1() {
   return (
     <div>
       {data.name}
-      <input type="button" onClick={handleClick}>
-        update name
-      </input>
+      <button onClick={handleClick}>update name</button>
     </div>
   );
 }
@@ -64,10 +62,8 @@ export function Child2() {
   return (
     <div>
       {data.height}
-      <input type="button" onClick={handleClick}>
-        update height
-      </input>
+      <button onClick={handleClick}>update height</button>
     </div>
   );
 }
-`,paraId:6,tocIndex:3}]},93698:function(a,e,n){n.r(e),n.d(e,{texts:function(){return t}});const t=[]}}]);
+`,paraId:6,tocIndex:3}]},93698:function(a,n,e){e.r(n),e.d(n,{texts:function(){return t}});const t=[]}}]);

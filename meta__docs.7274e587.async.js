@@ -41,9 +41,7 @@ export function Child1() {
   return (
     <div>
       {data.name}
-      <input type="button" onClick={handleClick}>
-        \u66F4\u65B0name
-      </input>
+      <button onClick={handleClick}>\u66F4\u65B0name</button>
     </div>
   );
 }
@@ -64,9 +62,7 @@ export function Child2() {
   return (
     <div>
       {data.height}
-      <input type="button" onClick={handleClick}>
-        \u66F4\u65B0height
-      </input>
+      <button onClick={handleClick}>\u66F4\u65B0height</button>
     </div>
   );
 }
