@@ -5,8 +5,8 @@ hero:
   actions:
     - text: 教程
       link: /guide
-    - text: 文档
-      link: /guide
+    - text: API
+      link: /api
 features:
   - title: Store
     emoji: 💎

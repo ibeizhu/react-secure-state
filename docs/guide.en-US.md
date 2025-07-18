@@ -1,13 +1,14 @@
-# Documentation
+# Guide
 
 `react-secure-state` is a secure and reliable state management tool with fine-grained permission control and ultimate rendering performance.
 
 Features:
--  💎 Store: State Management Framework
+
+- 💎 Store: State Management Framework
 - 🛡️ Secure: Field-level Access Control
--  🚀 Extreme Performance: Support point-to-point rendering for store data updates
+- 🚀 Extreme Performance: Support point-to-point rendering for store data updates
 - 📝 Typed: Powerful Type Inference
--  🚀 Lightweight: Zero Dependencies
+- 🚀 Lightweight: Zero Dependencies
 
 ## createStore
 
