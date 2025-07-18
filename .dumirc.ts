@@ -8,6 +8,9 @@ export default defineConfig({
   outputPath: 'docs-dist',
   themeConfig: {
     name: 'Secure State',
+    socialLinks: {
+      github: 'https://github.com/ibeizhu/react-secure-state',
+    },
   },
   base: '/react-secure-state/',
   publicPath: '/react-secure-state/',
