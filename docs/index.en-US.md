@@ -12,12 +12,12 @@ features:
     emoji: 💎
     description: State Management Framework
   - title: Secure
-    emoji: 🛡️
+    emoji: 🔒
     description: Field-level Access Control
   - title: Extreme Performance
     emoji: 🚀
     description: Point-to-point Rendering
   - title: Typed
-    emoji: 📝
+    emoji: 🧩
     description: Powerful Type Inference
 ---

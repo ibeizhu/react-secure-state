@@ -1,10 +1,10 @@
-## NPM
+## npm publish
 
 ```
 npm publish
 ```
 
-## Github
+## deploy github gh pages
 
 ```
 npm run docs:build

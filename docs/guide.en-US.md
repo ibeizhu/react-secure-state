@@ -5,9 +5,9 @@
 Features:
 
 - 💎 Store: State Management Framework
-- 🛡️ Secure: Field-level Access Control
-- 🚀 Extreme Performance: Support point-to-point rendering for store data updates
-- 📝 Typed: Powerful Type Inference
+- 🔒 Secure: Field-level Access Control
+- ⚡️ Extreme Performance: Support point-to-point rendering for store data updates
+- 🧩 Typed: Powerful Type Inference
 - 🚀 Lightweight: Zero Dependencies
 
 ## createStore

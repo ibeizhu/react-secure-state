@@ -12,12 +12,12 @@ features:
     emoji: 💎
     description: Store 状态管理
   - title: 安全
-    emoji: 🛡️
+    emoji: 🔒
     description: 字段级别的权限控制
   - title: 极致的性能
     emoji: 🚀
     description: 点到点的渲染性能
   - title: 类型提示
-    emoji: 📝
+    emoji: 🧩
     description: 强大的类型提示
 ---
