@@ -18,7 +18,7 @@
   setFieldValue: (path: K, value: any) => void;
   setFieldsValue: (fieldsValue: Partial<Record<FieldPath<T>, any>>) => void;
 };
-`,paraId:8,tocIndex:7},{value:"Parameters",paraId:9,tocIndex:7},{value:"fields: K[]",paraId:10,tocIndex:7},{value:"An array of the field names to subscribe and operate. Only these fields will be monitored and exposed.",paraId:11,tocIndex:7},{value:"Return object",paraId:12,tocIndex:7},{value:"values: Pick<T, K>",paraId:13,tocIndex:7},{value:"The object with the values of the currently subscribed fields. For example: { fieldA: valueA, fieldB: valueB }.",paraId:14,tocIndex:7},{value:"setFieldValue: (path: K, value: any) => void",paraId:13,tocIndex:7},{value:"Update the value of a specific field. Only fields registered in fields can be updated, otherwise an error will be thrown.",paraId:15,tocIndex:7},{value:"useStoreValues",paraId:15,tocIndex:7},{value:" strictly controls data read/write permissions; unrequested fields cannot be modified.",paraId:15,tocIndex:7},{value:"setFieldsValue: (fieldsValue: Partial<Record<FieldPath<T>, any>>) => void",paraId:13,tocIndex:7},{value:"Batch update values of multiple fields. Only fields registered in fields can be updated, otherwise an error will be thrown.",paraId:16,tocIndex:7},{value:"useStoreValues",paraId:16,tocIndex:7},{value:" strictly controls data read/write permissions; unrequested fields cannot be modified.",paraId:16,tocIndex:7},{value:`const { values, setFieldValue, setFieldsValue } = useStoreValues([
+`,paraId:8,tocIndex:7},{value:"Parameters",paraId:9,tocIndex:7},{value:"fields: K[]",paraId:10,tocIndex:7},{value:"An array of the field names to subscribe and operate. Only these fields will be monitored and exposed.",paraId:11,tocIndex:7},{value:"Return Array",paraId:12,tocIndex:7},{value:"Array[0] ",paraId:13,tocIndex:7},{value:"values: Pick<T, K>",paraId:13,tocIndex:7},{value:"The object with the values of the currently subscribed fields. For example: { fieldA: valueA, fieldB: valueB }.",paraId:14,tocIndex:7},{value:"Array[1] ",paraId:13,tocIndex:7},{value:"dispatch: { setFieldValue, setFieldsValue}",paraId:13,tocIndex:7},{value:"setFieldValue: (path: K, value: any) => void",paraId:15,tocIndex:7},{value:"Update the value of a specific field. Only fields registered in fields can be updated, otherwise an error will be thrown.",paraId:16,tocIndex:7},{value:"useStoreValues",paraId:16,tocIndex:7},{value:" strictly controls data read/write permissions; unrequested fields cannot be modified.",paraId:16,tocIndex:7},{value:"setFieldsValue: (fieldsValue: Partial<Record<FieldPath<T>, any>>) => void",paraId:15,tocIndex:7},{value:"Batch update values of multiple fields. Only fields registered in fields can be updated, otherwise an error will be thrown.",paraId:17,tocIndex:7},{value:"useStoreValues",paraId:17,tocIndex:7},{value:" strictly controls data read/write permissions; unrequested fields cannot be modified.",paraId:17,tocIndex:7},{value:`const [values, { setFieldValue, setFieldsValue }] = useStoreValues([
   'fieldA',
   'fieldB',
 ]);
@@ -33,7 +33,7 @@ setFieldValue('fieldA', 'newValueA');
 
 // Batch set
 setFieldsValue({ fieldA: 123, fieldB: 'abc' });
-`,paraId:17,tocIndex:8},{value:`// Define type
+`,paraId:18,tocIndex:8},{value:`// Define type
 type MyStore = {
   count: number;
   user: string;
@@ -49,7 +49,7 @@ const { StoreProvider, useStoreValues } = createStore<MyStore>();
 
 // In a component
 function MyComponent() {
-  const { values, setFieldValue, setFieldsValue } = useStoreValues([
+  const [values, { setFieldValue, setFieldsValue }] = useStoreValues([
     'count',
     'user',
   ]);
@@ -63,7 +63,7 @@ function MyComponent() {
     </div>
   );
 }
-`,paraId:18,tocIndex:9}]},854:function(t,n,e){e.r(n),e.d(n,{texts:function(){return a}});const a=[{value:"react-secure-state",paraId:0,tocIndex:0},{value:" is a secure and reliable state management tool with fine-grained permission control and ultimate rendering performance.",paraId:0,tocIndex:0},{value:"Features:",paraId:1,tocIndex:0},{value:"\u{1F48E} Store: State Management Framework",paraId:2,tocIndex:0},{value:"\u{1F512} Secure: Field-level Access Control",paraId:2,tocIndex:0},{value:"\u26A1\uFE0F Extreme Performance: Support point-to-point rendering for store data updates",paraId:2,tocIndex:0},{value:"\u{1F9E9} Typed: Powerful Type Inference",paraId:2,tocIndex:0},{value:"\u{1F680} Lightweight: Zero Dependencies",paraId:2,tocIndex:0},{value:"./store.tsx",paraId:3,tocIndex:1},{value:`import { createStore } from 'react-secure-state';
+`,paraId:19,tocIndex:9}]},854:function(t,n,e){e.r(n),e.d(n,{texts:function(){return a}});const a=[{value:"react-secure-state",paraId:0,tocIndex:0},{value:" is a secure and reliable state management tool with fine-grained permission control and ultimate rendering performance.",paraId:0,tocIndex:0},{value:"Features:",paraId:1,tocIndex:0},{value:"\u{1F48E} Store: State Management Framework",paraId:2,tocIndex:0},{value:"\u{1F512} Secure: Field-level Access Control",paraId:2,tocIndex:0},{value:"\u26A1\uFE0F Extreme Performance: Support point-to-point rendering for store data updates",paraId:2,tocIndex:0},{value:"\u{1F9E9} Typed: Powerful Type Inference",paraId:2,tocIndex:0},{value:"\u{1F680} Lightweight: Zero Dependencies",paraId:2,tocIndex:0},{value:"./store.tsx",paraId:3,tocIndex:1},{value:`import { createStore } from 'react-secure-state';
 
 export interface StoreType {
   name: string;
@@ -93,7 +93,7 @@ function App() {
 export function Child1() {
   // apply field \`name\` read & write permission
   // note: \`setFieldValue\` can only update field \`name\`, has no permission to update other fields
-  const { values, setFieldValue } = useStoreValues(['name']);
+  const [values, { setFieldValue }] = useStoreValues(['name']);
 
   console.log(data);
   // data = { name }
@@ -114,7 +114,7 @@ export function Child1() {
 export function Child2() {
   // apply field \`height\` read & write permission
   // note: \`setFieldValue\` can only update field \`height\`, has no permission to update other fields
-  const { values, setFieldValue } = useStoreValues(['height']);
+  const [values, { setFieldValue }] = useStoreValues(['height']);
 
   console.log(data);
   // data = { height }

@@ -28,7 +28,7 @@ function App() {
 export function Child1() {
   // \u7533\u8BF7\u5B57\u6BB5 \`name\` \u7684\u8BFB\u5199\u6743\u9650
   // \u6CE8\u610F: \`setFieldValue\` \u53EA\u80FD\u66F4\u65B0\u5B57\u6BB5 \`name\`\uFF0C\u6CA1\u6709\u6743\u9650\u66F4\u65B0\u5176\u4ED6\u5B57\u6BB5
-  const { values, setFieldValue } = useStoreValues(['name']);
+  const [values, { setFieldValue }] = useStoreValues(['name']);
 
   console.log(data);
   // data = { name }
@@ -49,7 +49,7 @@ export function Child1() {
 export function Child2() {
   // \u7533\u8BF7\u5B57\u6BB5 \`height\` \u7684\u8BFB\u5199\u6743\u9650
   // \u6CE8\u610F: \`setFieldValue\` \u53EA\u80FD\u66F4\u65B0\u5B57\u6BB5 \`height\`\uFF0C\u6CA1\u6709\u6743\u9650\u66F4\u65B0\u5176\u4ED6\u5B57\u6BB5
-  const { values, setFieldValue } = useStoreValues(['height']);
+  const [values, { setFieldValue }] = useStoreValues(['height']);
 
   console.log(data);
   // data = { height }
