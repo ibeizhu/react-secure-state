@@ -6,11 +6,12 @@
 A secure and reliable state management tool with fine-grained permission control and ultimate rendering performance.
 
 Features:
--  💎 Store: State Management Framework
+
+- 💎 Store: State Management Framework
 - 🛡️ Secure: Field-level Access Control
--  🚀 Extreme Performance: Support point-to-point rendering for store data updates
+- 🚀 Extreme Performance: Support point-to-point rendering for store data updates
 - 📝 Typed: Powerful Type Inference
--  🚀 Lightweight: Zero Dependencies
+- 🚀 Lightweight: Zero Dependencies
 
 [中文文档](https://ibeizhu.github.io/react-secure-state)
 
@@ -21,7 +22,6 @@ Features:
 ```
 npm i react-secure-state -S
 ```
-
 
 ## Usage
 
@@ -76,7 +76,7 @@ import { useStoreValues } from './store';
 export function Child1() {
   // apply field `name` read & write permission
   // note: `setFieldValue` can only update field `name`, has no permission to update other fields
-  const { values, setFieldValue } = useStoreValues(['name']);
+  const [values, { setFieldValue }] = useStoreValues(['name']);
 
   console.log(data);
   // data = { name }
@@ -97,7 +97,7 @@ export function Child1() {
 export function Child2() {
   // apply field `height` read & write permission
   // note: `setFieldValue` can only update field `height`, has no permission to update other fields
-  const { values, setFieldValue } = useStoreValues(['height']);
+  const [values, { setFieldValue }] = useStoreValues(['height']);
 
   console.log(data);
   // data = { height }
@@ -115,7 +115,6 @@ export function Child2() {
   );
 }
 ```
-
 
 ## LICENSE
 

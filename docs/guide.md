@@ -59,7 +59,7 @@ import { useStoreValues } from './store';
 export function Child1() {
   // 申请字段 `name` 的读写权限
   // 注意: `setFieldValue` 只能更新字段 `name`，没有权限更新其他字段
-  const { values, setFieldValue } = useStoreValues(['name']);
+  const [values, { setFieldValue }] = useStoreValues(['name']);
 
   console.log(data);
   // data = { name }
@@ -80,7 +80,7 @@ export function Child1() {
 export function Child2() {
   // 申请字段 `height` 的读写权限
   // 注意: `setFieldValue` 只能更新字段 `height`，没有权限更新其他字段
-  const { values, setFieldValue } = useStoreValues(['height']);
+  const [values, { setFieldValue }] = useStoreValues(['height']);
 
   console.log(data);
   // data = { height }

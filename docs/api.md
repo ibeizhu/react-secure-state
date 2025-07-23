@@ -50,11 +50,13 @@ interface StoreProviderProps<T> {
 ```tsx | pure
 function useStoreValues<K extends FieldPath<T>>(
   fields: K[],
-): {
-  values: Pick<T, K>;
-  setFieldValue: (path: K, value: any) => void;
-  setFieldsValue: (fieldsValue: Partial<Record<FieldPath<T>, any>>) => void;
-};
+): [
+  Pick<T, K>,
+  {
+    setFieldValue: (path: K, value: any) => void;
+    setFieldsValue: (fieldsValue: Partial<Record<FieldPath<T>, any>>) => void;
+  },
+];
 ```
 
 参数
@@ -62,21 +64,22 @@ function useStoreValues<K extends FieldPath<T>>(
 - `fields: K[]`
   - 需要订阅和操作的字段名数组，仅这些字段会被侦听和暴露。
 
-返回对象
+返回数组
 
-- `values: Pick<T, K>`
+- Array[0] `values: Pick<T, K>`
   - 当前订阅字段对应的值对象。例如：{ fieldA: valueA, fieldB: valueB }。
-- `setFieldValue: (path: K, value: any) => void`
-  - 更新指定字段的值，仅允许更新在 fields 注册过的字段，否则会抛错。
-  - `useStoreValues` 严格控制数据的读写权限，未申请的字段不允许被修改
-- `setFieldsValue: (fieldsValue: Partial<Record<FieldPath<T>, any>>) => void`
-  - 批量更新多个字段值，仅允许更新在 fields 注册过的字段，否则会抛错。
-  - `useStoreValues` 严格控制数据的读写权限，未申请的字段不允许被修改
+- Array[1] `dispatch: { setFieldValue, setFieldsValue}`
+  - `setFieldValue: (path: K, value: any) => void`
+    - 更新指定字段的值，仅允许更新在 fields 注册过的字段，否则会抛错。
+    - `useStoreValues` 严格控制数据的读写权限，未申请的字段不允许被修改
+  - `setFieldsValue: (fieldsValue: Partial<Record<FieldPath<T>, any>>) => void`
+    - 批量更新多个字段值，仅允许更新在 fields 注册过的字段，否则会抛错。
+    - `useStoreValues` 严格控制数据的读写权限，未申请的字段不允许被修改
 
 ### 用法
 
 ```tsx | pure
-const { values, setFieldValue, setFieldsValue } = useStoreValues([
+const [values, { setFieldValue, setFieldsValue }] = useStoreValues([
   'fieldA',
   'fieldB',
 ]);
@@ -112,7 +115,7 @@ const { StoreProvider, useStoreValues } = createStore<MyStore>();
 
 // 组件内
 function MyComponent() {
-  const { values, setFieldValue, setFieldsValue } = useStoreValues([
+  const [values, { setFieldValue, setFieldsValue }] = useStoreValues([
     'count',
     'user',
   ]);

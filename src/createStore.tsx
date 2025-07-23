@@ -28,6 +28,14 @@ export interface StoreProviderProps<T> {
   children: React.ReactNode;
 }
 
+export type UseStoreValuesReturn<T, K extends FieldPath<T>> = [
+  Pick<T, K>,
+  {
+    setFieldValue: (path: K, value: any) => void;
+    setFieldsValue: (fieldsValue: Partial<Record<FieldPath<T>, any>>) => void;
+  },
+];
+
 export function createStore<T extends Record<string, any>>() {
   type SubscribeValues = {
     store: T;
@@ -86,7 +94,9 @@ export function createStore<T extends Record<string, any>>() {
     );
   }
 
-  function useStoreValues<K extends FieldPath<T>>(fields: K[]) {
+  function useStoreValues<K extends FieldPath<T>>(
+    fields: K[],
+  ): UseStoreValuesReturn<T, K> {
     const { store = {}, updateField, updateFields } = useStoreContext();
 
     const [values, setValues] = useState<Pick<T, K>>(() => {
@@ -129,11 +139,11 @@ export function createStore<T extends Record<string, any>>() {
       });
     }, []);
 
-    return {
-      values,
-      setFieldValue,
-      setFieldsValue,
-    };
+    return useMemo(() => {
+      const dispatch = { setFieldValue, setFieldsValue };
+
+      return [values, dispatch];
+    }, [values, setFieldValue, setFieldsValue]);
   }
 
   return {

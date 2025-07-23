@@ -62,21 +62,22 @@ Parameters
 - `fields: K[]`
   - An array of the field names to subscribe and operate. Only these fields will be monitored and exposed.
 
-Return object
+Return Array
 
-- `values: Pick<T, K>`
+- Array[0] `values: Pick<T, K>`
   - The object with the values of the currently subscribed fields. For example: { fieldA: valueA, fieldB: valueB }.
-- `setFieldValue: (path: K, value: any) => void`
-  - Update the value of a specific field. Only fields registered in fields can be updated, otherwise an error will be thrown.
-  - `useStoreValues` strictly controls data read/write permissions; unrequested fields cannot be modified.
-- `setFieldsValue: (fieldsValue: Partial<Record<FieldPath<T>, any>>) => void`
-  - Batch update values of multiple fields. Only fields registered in fields can be updated, otherwise an error will be thrown.
-  - `useStoreValues` strictly controls data read/write permissions; unrequested fields cannot be modified.
+- Array[1] `dispatch: { setFieldValue, setFieldsValue}`
+  - `setFieldValue: (path: K, value: any) => void`
+    - Update the value of a specific field. Only fields registered in fields can be updated, otherwise an error will be thrown.
+    - `useStoreValues` strictly controls data read/write permissions; unrequested fields cannot be modified.
+  - `setFieldsValue: (fieldsValue: Partial<Record<FieldPath<T>, any>>) => void`
+    - Batch update values of multiple fields. Only fields registered in fields can be updated, otherwise an error will be thrown.
+    - `useStoreValues` strictly controls data read/write permissions; unrequested fields cannot be modified.
 
 ### Usage
 
 ```tsx | pure
-const { values, setFieldValue, setFieldsValue } = useStoreValues([
+const [values, { setFieldValue, setFieldsValue }] = useStoreValues([
   'fieldA',
   'fieldB',
 ]);
@@ -112,7 +113,7 @@ const { StoreProvider, useStoreValues } = createStore<MyStore>();
 
 // In a component
 function MyComponent() {
-  const { values, setFieldValue, setFieldsValue } = useStoreValues([
+  const [values, { setFieldValue, setFieldsValue }] = useStoreValues([
     'count',
     'user',
   ]);
